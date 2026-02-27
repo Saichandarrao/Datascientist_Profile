@@ -2,18 +2,6 @@ import streamlit as st
 from pathlib import Path
 from utils import load_css
 
-st.set_page_config(page_title="Saichandar Rao Uppuganti", layout="wide")
-
-PAGES = {
-    "Home": "Profile.py",
-    "About": "pages/1_About.py",
-    "Experience": "pages/2_Experience.py",
-    "Projects": "pages/3_Projects.py",
-    "Skills": "pages/4_Skills.py",
-    "Resume": "pages/5_Resume.py",
-    "Contact": "pages/6_Contact.py",
-}
-
 # Always-visible navigation
 selected = st.radio(
     "Navigation",
@@ -108,3 +96,4 @@ with c3:
     </div>
 
     """, unsafe_allow_html=True)
+
