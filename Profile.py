@@ -46,9 +46,9 @@ with left:
     with c1:
         st.link_button("LinkedIn", "https://www.linkedin.com/")
     with c2:
-        st.link_button("GitHub", "https://github.com/")
+        st.link_button("GitHub", "https://github.com/saichandarrao")
     with c3:
-        st.link_button("Email", "mailto:your@email.com")
+        st.link_button("Email", "mailto:uppuganti2000@gmail.com")
 
     st.markdown("## Core Focus")
 
@@ -103,4 +103,5 @@ with f3:
         "Developed automation pipelines using Python/SSIS, validations, logging, and job scheduling "
         "to support production-ready systems."
     )
+
 
