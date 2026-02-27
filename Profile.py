@@ -20,20 +20,7 @@ if os.path.exists("style.css"):
 # -----------------------------
 # Sidebar Navigation (Multi-page style)
 # -----------------------------
-with st.sidebar:
-    st.title("Profile")
-    st.write("")  # spacing
-    st.write("Use the menu to navigate:")
-    st.markdown(
-        """
-        - About  
-        - Experience  
-        - Projects  
-        - Skills  
-        - Resume  
-        - Contact
-        """
-    )
+
 
 # -----------------------------
 # Main Content
@@ -116,3 +103,4 @@ with f3:
         "Developed automation pipelines using Python/SSIS, validations, logging, and job scheduling "
         "to support production-ready systems."
     )
+
