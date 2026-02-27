@@ -18,6 +18,24 @@ if os.path.exists("style.css"):
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # -----------------------------
+# Sidebar Navigation (Multi-page style)
+# -----------------------------
+with st.sidebar:
+    st.title("Profile")
+    st.write("")  # spacing
+    st.write("Use the menu to navigate:")
+    st.markdown(
+        """
+        - About  
+        - Experience  
+        - Projects  
+        - Skills  
+        - Resume  
+        - Contact
+        """
+    )
+
+# -----------------------------
 # Main Content
 # -----------------------------
 PROFILE_IMG = "assets/profile.jpg"
@@ -71,7 +89,7 @@ with right:
         st.warning("Add your image at assets/profile.jpg")
 
 # -----------------------------
-# Features Section (Bottom)
+# ✅ UPDATED FEATURES SECTION (AI / Work / Automation)
 # -----------------------------
 st.markdown("---")
 st.markdown("## Features")
@@ -79,13 +97,22 @@ st.markdown("## Features")
 f1, f2, f3 = st.columns(3)
 
 with f1:
-    st.markdown("### ✅ Clean UI")
-    st.write("Modern responsive layout with sidebar navigation.")
+    st.markdown("🤖 AI / LLM Involvement")
+    st.caption(
+        "Worked on LLM-based solutions like document understanding, extraction, summarization, "
+        "and automation to improve productivity and accuracy."
+    )
 
 with f2:
-    st.markdown("### ⚡ Fast Navigation")
-    st.write("Pages organized into About, Experience, Projects, Skills, Resume, Contact.")
+    st.markdown("📊 Real-world Workflows")
+    st.caption(
+        "Built end-to-end data workflows for healthcare claims auditing, data analysis, SQL reporting, "
+        "and identifying duplicate/retro patterns."
+    )
 
 with f3:
-    st.markdown("### ☁️ Hosted on Streamlit")
-    st.write("Deployed online and shareable using a public URL.")
+    st.markdown("⚙️ Automation & ETL Pipelines")
+    st.caption(
+        "Developed automation pipelines using Python/SSIS, validations, logging, and job scheduling "
+        "to support production-ready systems."
+    )
