@@ -2,12 +2,16 @@ import streamlit as st
 from pathlib import Path
 from utils import load_css
 
-import streamlit as st
+# ✅ MUST be the first Streamlit command
+st.set_page_config(
+    page_title="Saichandar Rao Uppuganti | Portfolio",
+    page_icon="📄",
+    layout="wide",
+    initial_sidebar_state="expanded"  # ✅ opens sidebar by default
+)
 
-st.set_page_config(page_title="Saichandar Rao Uppuganti", layout="wide")
-
-# Always-visible navigation (top bar)
-NAV = {
+# ✅ Define pages for always-visible navigation
+PAGES = {
     "Home": "Profile.py",
     "About": "pages/1_About.py",
     "Experience": "pages/2_Experience.py",
@@ -17,25 +21,21 @@ NAV = {
     "Contact": "pages/6_Contact.py",
 }
 
-selected = st.radio(
-    "Navigation",
-    list(NAV.keys()),
-    horizontal=True,
-)
-
-# If user selects a page, switch to it
-st.switch_page(NAV[selected])
-# Redirect to selected page
-st.switch_page(PAGES[selected])
-
-st.set_page_config(
-    page_title="Saichandar Rao Uppuganti | Portfolio",
-    page_icon="📄",
-    layout="wide"
-)
-
 # Load custom CSS
 load_css()
+
+# ✅ Always-visible navigation (top)
+st.markdown("### Navigation")
+selected = st.radio(
+    label="",
+    options=list(PAGES.keys()),
+    horizontal=True,
+    index=0
+)
+
+# ✅ Prevent infinite loop: only switch if not already on Home
+if selected != "Home":
+    st.switch_page(PAGES[selected])
 
 # ---------- HERO SECTION ----------
 colA, colB = st.columns([1.6, 1])
@@ -61,7 +61,6 @@ with colA:
 
     st.markdown("### Core Focus")
 
-    # Use CSS pill class instead of inline styling
     st.markdown('<span class="pill">LLM / GPT Solutions</span>', unsafe_allow_html=True)
     st.markdown('<span class="pill">Healthcare Claims Auditing</span>', unsafe_allow_html=True)
     st.markdown('<span class="pill">ML Model Training & Validation</span>', unsafe_allow_html=True)
@@ -110,7 +109,4 @@ with c3:
       <h3>Healthcare Data Dashboard</h3>
       <p>Power BI + SQL + SSIS pipeline to track data breaches and reporting KPIs.</p>
     </div>
-
     """, unsafe_allow_html=True)
-
-
