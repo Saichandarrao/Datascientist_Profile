@@ -1,112 +1,87 @@
 import streamlit as st
-from pathlib import Path
-from utils import load_css
+import os
 
-# ✅ MUST be the first Streamlit command
+# -----------------------------
+# Page Config (IMPORTANT)
+# -----------------------------
 st.set_page_config(
-    page_title="Saichandar Rao Uppuganti | Portfolio",
-    page_icon="📄",
+    page_title="Saichandar Rao Uppuganti",
     layout="wide",
-    initial_sidebar_state="expanded"  # ✅ opens sidebar by default
+    initial_sidebar_state="expanded"   # starts opened by default
 )
 
-# ✅ Define pages for always-visible navigation
-PAGES = {
-    "Home": "Profile.py",
-    "About": "pages/1_About.py",
-    "Experience": "pages/2_Experience.py",
-    "Projects": "pages/3_Projects.py",
-    "Skills": "pages/4_Skills.py",
-    "Resume": "pages/5_Resume.py",
-    "Contact": "pages/6_Contact.py",
-}
+# -----------------------------
+# Load CSS (if you have style.css)
+# -----------------------------
+CSS_FILE = "style.css"
+if os.path.exists(CSS_FILE):
+    with open(CSS_FILE, "r", encoding="utf-8") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# Load custom CSS
-load_css()
+# -----------------------------
+# Sidebar Open Helper (Always visible on page)
+# -----------------------------
+st.info("✅ If the left menu (sidebar) is hidden, click the small **`>`** arrow on the far left to open it again.")
 
-# ✅ Always-visible navigation (top)
-st.markdown("### Navigation")
-selected = st.radio(
-    label="",
-    options=list(PAGES.keys()),
-    horizontal=True,
-    index=0
+# -----------------------------
+# Main Content
+# -----------------------------
+# Paths (update if needed)
+PROFILE_IMG = "assets/profile.jpg"  # keep image inside assets/profile.jpg
+
+name = "Saichandar Rao Uppuganti"
+tagline = "Data Scientist | Healthcare Claims Auditing | LLM & ML | SQL | AWS/Azure"
+summary = (
+    "Data Scientist with experience in healthcare claims auditing, building machine learning and LLM-based "
+    "solutions to improve audit accuracy, reduce review time, and enable data-driven decisions. Strong in SQL "
+    "development, ETL pipelines (SSIS/Python), and cloud (AWS/Azure)."
 )
 
-# ✅ Prevent infinite loop: only switch if not already on Home
-if selected != "Home":
-    st.switch_page(PAGES[selected])
+# Top layout: text (left) + image (right)
+left, right = st.columns([2, 1])
 
-# ---------- HERO SECTION ----------
-colA, colB = st.columns([1.6, 1])
+with left:
+    st.markdown(f"<h1 style='margin-bottom: 0px;'>{name}</h1>", unsafe_allow_html=True)
+    st.markdown(f"<p style='margin-top: 6px; font-size: 16px; opacity: 0.9;'>{tagline}</p>", unsafe_allow_html=True)
+    st.write(summary)
 
-with colA:
-    st.markdown("## Saichandar Rao Uppuganti")
-    st.caption("Data Scientist | Healthcare Claims Auditing | LLM & ML | SQL | AWS/Azure")
-
-    st.write(
-        "Data Scientist with experience in healthcare claims auditing, "
-        "building machine learning and LLM-based solutions to improve audit accuracy, "
-        "reduce review time, and enable data-driven decisions. "
-        "Strong in SQL development, ETL pipelines (SSIS/Python), and cloud (AWS/Azure)."
-    )
-
+    # Buttons row
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.link_button("LinkedIn", "https://linkedin.com/in/uppuganti")
+        st.link_button("LinkedIn", "https://www.linkedin.com/")
     with c2:
-        st.link_button("GitHub", "https://github.com/yourusername")  # change this
+        st.link_button("GitHub", "https://github.com/")
     with c3:
-        st.link_button("Email", "mailto:uppuganti2000@gmail.com")
+        st.link_button("Email", "mailto:yourname@email.com")
 
-    st.markdown("### Core Focus")
+    st.markdown("## Core Focus")
 
-    st.markdown('<span class="pill">LLM / GPT Solutions</span>', unsafe_allow_html=True)
-    st.markdown('<span class="pill">Healthcare Claims Auditing</span>', unsafe_allow_html=True)
-    st.markdown('<span class="pill">ML Model Training & Validation</span>', unsafe_allow_html=True)
-    st.markdown('<span class="pill">SQL / T-SQL / Optimization</span>', unsafe_allow_html=True)
-    st.markdown('<span class="pill">ETL: SSIS + Python</span>', unsafe_allow_html=True)
-    st.markdown('<span class="pill">AWS / Azure</span>', unsafe_allow_html=True)
+    # Simple "pill" style using markdown (works with/without CSS)
+    st.markdown(
+        """
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <div style="padding:10px 14px; border-radius:18px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);">
+                LLM / GPT Solutions
+            </div>
+            <div style="padding:10px 14px; border-radius:18px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);">
+                Healthcare Claims Auditing
+            </div>
+            <div style="padding:10px 14px; border-radius:18px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);">
+                ML Model Training & Validation
+            </div>
+            <div style="padding:10px 14px; border-radius:18px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);">
+                SQL / T-SQL / Optimization
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-    resume_path = Path("assets/resume.pdf")
-    if resume_path.exists():
-        with open(resume_path, "rb") as f:
-            st.download_button("Download Resume (PDF)", f, file_name="Saichandar_Resume.pdf")
-
-with colB:
-    img_path = Path("assets/profile.jpg")
-    if img_path.exists():
-        st.image(str(img_path), use_container_width=True)
+with right:
+    if os.path.exists(PROFILE_IMG):
+        st.image(PROFILE_IMG, use_container_width=True)
     else:
-        st.markdown('<div class="card">Add your photo at assets/profile.jpg</div>', unsafe_allow_html=True)
+        st.warning("Profile image not found. Put your photo at: **assets/profile.jpg**")
 
-st.markdown("---")
-
-# ---------- FEATURED WORK ----------
-st.markdown("## Featured Work")
-
-c1, c2, c3 = st.columns(3)
-
-with c1:
-    st.markdown("""
-    <div class="card">
-      <h3>AI-Driven Claims Auditing</h3>
-      <p>End-to-end pipeline for document extraction, validation, and classification.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with c2:
-    st.markdown("""
-    <div class="card">
-      <h3>BERT Document Classifier</h3>
-      <p>Categorized claim documents before audit processing; improved accuracy.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with c3:
-    st.markdown("""
-    <div class="card">
-      <h3>Healthcare Data Dashboard</h3>
-      <p>Power BI + SQL + SSIS pipeline to track data breaches and reporting KPIs.</p>
-    </div>
-    """, unsafe_allow_html=True)
+# Footer note
+st.caption("Use the left sidebar to navigate: About • Experience • Projects • Skills • Resume • Contact")
