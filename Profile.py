@@ -2,6 +2,28 @@ import streamlit as st
 from pathlib import Path
 from utils import load_css
 
+st.set_page_config(page_title="Saichandar Rao Uppuganti", layout="wide")
+
+PAGES = {
+    "Home": "Profile.py",
+    "About": "pages/1_About.py",
+    "Experience": "pages/2_Experience.py",
+    "Projects": "pages/3_Projects.py",
+    "Skills": "pages/4_Skills.py",
+    "Resume": "pages/5_Resume.py",
+    "Contact": "pages/6_Contact.py",
+}
+
+# Always-visible navigation
+selected = st.radio(
+    "Navigation",
+    list(PAGES.keys()),
+    horizontal=True
+)
+
+# Redirect to selected page
+st.switch_page(PAGES[selected])
+
 st.set_page_config(
     page_title="Saichandar Rao Uppuganti | Portfolio",
     page_icon="📄",
@@ -84,4 +106,5 @@ with c3:
       <h3>Healthcare Data Dashboard</h3>
       <p>Power BI + SQL + SSIS pipeline to track data breaches and reporting KPIs.</p>
     </div>
+
     """, unsafe_allow_html=True)
