@@ -20,7 +20,6 @@ if os.path.exists("style.css"):
 # -----------------------------
 # Main Content
 # -----------------------------
-
 PROFILE_IMG = "assets/profile.jpg"
 
 name = "Saichandar Rao Uppuganti"
@@ -70,3 +69,23 @@ with right:
         st.image(PROFILE_IMG, use_container_width=True)
     else:
         st.warning("Add your image at assets/profile.jpg")
+
+# -----------------------------
+# Features Section (Bottom)
+# -----------------------------
+st.markdown("---")
+st.markdown("## Features")
+
+f1, f2, f3 = st.columns(3)
+
+with f1:
+    st.markdown("### ✅ Clean UI")
+    st.write("Modern responsive layout with sidebar navigation.")
+
+with f2:
+    st.markdown("### ⚡ Fast Navigation")
+    st.write("Pages organized into About, Experience, Projects, Skills, Resume, Contact.")
+
+with f3:
+    st.markdown("### ☁️ Hosted on Streamlit")
+    st.write("Deployed online and shareable using a public URL.")
