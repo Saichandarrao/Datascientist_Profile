@@ -6,7 +6,7 @@ st.title("Contact")
 
 st.write("📧 Email: uppuganti2000@gmail.com")
 st.write("🔗 LinkedIn: https://linkedin.com/in/uppuganti")
-st.write("💻 GitHub: https://github.com/yourusername")  # change this
+st.write("💻 GitHub: https://github.com/saichandarrao")  # change this
 
 st.divider()
 
@@ -18,4 +18,5 @@ with st.form("contact_form"):
     submit = st.form_submit_button("Submit")
 
 if submit:
+
     st.success("Thanks! This is a demo form (it doesn’t send email yet).")
