@@ -2,13 +2,29 @@ import streamlit as st
 from pathlib import Path
 from utils import load_css
 
-# Always-visible navigation
+import streamlit as st
+
+st.set_page_config(page_title="Saichandar Rao Uppuganti", layout="wide")
+
+# Always-visible navigation (top bar)
+NAV = {
+    "Home": "Profile.py",
+    "About": "pages/1_About.py",
+    "Experience": "pages/2_Experience.py",
+    "Projects": "pages/3_Projects.py",
+    "Skills": "pages/4_Skills.py",
+    "Resume": "pages/5_Resume.py",
+    "Contact": "pages/6_Contact.py",
+}
+
 selected = st.radio(
     "Navigation",
-    list(PAGES.keys()),
-    horizontal=True
+    list(NAV.keys()),
+    horizontal=True,
 )
 
+# If user selects a page, switch to it
+st.switch_page(NAV[selected])
 # Redirect to selected page
 st.switch_page(PAGES[selected])
 
@@ -96,4 +112,5 @@ with c3:
     </div>
 
     """, unsafe_allow_html=True)
+
 
